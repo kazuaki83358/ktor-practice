@@ -12,6 +12,9 @@ import io.ktor.server.routing.*
 import org.jetbrains.exposed.sql.*
 
 fun Application.configureSerialization() {
+    install(ContentNegotiation) {
+        json()  // Enable JSON serialization using kotlinx.serialization
+    }
     routing {
         get("/json/kotlinx-serialization") {
                 call.respond(mapOf("hello" to "world"))
