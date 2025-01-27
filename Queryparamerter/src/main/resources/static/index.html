@@ -1,7 +1,10 @@
-<html>
- <head>
- </head>
- <body>
-   <h1>Hello Ktor!</h1>
- </body>
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" lang="">
+<head>
+    <title>Thymeleaf Example</title>
+</head>
+<body>
+<h1>Hello, <span th:text="${user.name}">Guest</span>!</h1>
+<p>Your ID is: <span th:text="${user.id}">0</span></p>
+</body>
 </html>

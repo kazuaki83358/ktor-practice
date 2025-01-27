@@ -11,8 +11,19 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver
 
 fun Application.configureRouting() {
     routing {
+        //here root endpoint
         get("/") {
-            call.respondText("Hello World!")
+            call.respondText { "hello, Everyone!" }
+        }
+        //here is the hello endpoint with query parameter http://localhost:8080/hello?name=Nishant
+        get("/hello") {
+            val name = call.request.queryParameters["name"]?:"guest"
+            call.respondText { "hello, $name !" }
+        }
+        //here is the /user endpoint for direct parameter endpoint http://localhost:8080/user/Nishant
+        get("/user/{username?}") {  // Note the `?` makes {username} optional
+            val username = call.parameters["username"] ?: "unknown"
+            call.respondText("Welcome, $username!")
         }
         // Static plugin. Try to access `/static/index.html`
         staticResources("/static", "static")
